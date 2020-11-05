@@ -2,7 +2,7 @@ const template = document.querySelector("template");
 const main = document.querySelector("main");
 
 const createUser = user => {
-    const localStorageUsers = localStorage.getItem("users");
+    const localStorageUsers = localStorage.getItem("users") ?? "[]";
     const users = JSON.parse(localStorageUsers)
     const usersNew = [
         ...users,
@@ -10,7 +10,7 @@ const createUser = user => {
     ];
     const stringUsersNew = JSON.stringify(usersNew)
     localStorage.setItem("users", stringUsersNew);
-}
+};
 
 const loadLoginForm = () => {
     const fragment = template.content.cloneNode(true);
@@ -27,7 +27,7 @@ const loadLoginForm = () => {
         event.preventDefault();
         const usernameInput = form.querySelector("input");
         const passwordInput = form.querySelector("password");
-    
+    })
     redirectButton.addEventListener("click", event => {
         event.preventDefault();
         loadSignUpForm();
@@ -54,8 +54,7 @@ const loadSignUpForm = () => {
         });
 
         form.querySelector(".message").textContent = `User ${usernameInput.value} created!`;
-        });
-
+        
     mainButton.addEventListener("click", event => {
         event.preventDefault();
     })
